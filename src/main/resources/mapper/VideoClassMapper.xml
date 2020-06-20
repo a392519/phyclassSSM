@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demo.mapper.VideoClassMapper">
+  <resultMap id="BaseResultMap" type="com.demo.model.VideoClass">
+    <constructor>
+      <idArg column="vid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="vGrade" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vBook" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vCapter" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vSection" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vDescription" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="difficulty" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="vname" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="videoSrc" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    vid, vGrade, vBook, vCapter, vSection, vDescription, difficulty, vname, videoSrc
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from videoclass
+    where vid = #{vid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from videoclass
+    where vid = #{vid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.demo.model.VideoClass">
+    insert into videoclass (vid, vGrade, vBook, 
+      vCapter, vSection, vDescription, 
+      difficulty, vname, videoSrc
+      )
+    values (#{vid,jdbcType=INTEGER}, #{vgrade,jdbcType=VARCHAR}, #{vbook,jdbcType=VARCHAR}, 
+      #{vcapter,jdbcType=VARCHAR}, #{vsection,jdbcType=VARCHAR}, #{vdescription,jdbcType=VARCHAR}, 
+      #{difficulty,jdbcType=INTEGER}, #{vname,jdbcType=VARCHAR}, #{videosrc,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.demo.model.VideoClass">
+    insert into videoclass
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vid != null">
+        vid,
+      </if>
+      <if test="vgrade != null">
+        vGrade,
+      </if>
+      <if test="vbook != null">
+        vBook,
+      </if>
+      <if test="vcapter != null">
+        vCapter,
+      </if>
+      <if test="vsection != null">
+        vSection,
+      </if>
+      <if test="vdescription != null">
+        vDescription,
+      </if>
+      <if test="difficulty != null">
+        difficulty,
+      </if>
+      <if test="vname != null">
+        vname,
+      </if>
+      <if test="videosrc != null">
+        videoSrc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vid != null">
+        #{vid,jdbcType=INTEGER},
+      </if>
+      <if test="vgrade != null">
+        #{vgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="vbook != null">
+        #{vbook,jdbcType=VARCHAR},
+      </if>
+      <if test="vcapter != null">
+        #{vcapter,jdbcType=VARCHAR},
+      </if>
+      <if test="vsection != null">
+        #{vsection,jdbcType=VARCHAR},
+      </if>
+      <if test="vdescription != null">
+        #{vdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null">
+        #{difficulty,jdbcType=INTEGER},
+      </if>
+      <if test="vname != null">
+        #{vname,jdbcType=VARCHAR},
+      </if>
+      <if test="videosrc != null">
+        #{videosrc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.demo.model.VideoClass">
+    update videoclass
+    <set>
+      <if test="vgrade != null">
+        vGrade = #{vgrade,jdbcType=VARCHAR},
+      </if>
+      <if test="vbook != null">
+        vBook = #{vbook,jdbcType=VARCHAR},
+      </if>
+      <if test="vcapter != null">
+        vCapter = #{vcapter,jdbcType=VARCHAR},
+      </if>
+      <if test="vsection != null">
+        vSection = #{vsection,jdbcType=VARCHAR},
+      </if>
+      <if test="vdescription != null">
+        vDescription = #{vdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null">
+        difficulty = #{difficulty,jdbcType=INTEGER},
+      </if>
+      <if test="vname != null">
+        vname = #{vname,jdbcType=VARCHAR},
+      </if>
+      <if test="videosrc != null">
+        videoSrc = #{videosrc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vid = #{vid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.demo.model.VideoClass">
+    update videoclass
+    set vGrade = #{vgrade,jdbcType=VARCHAR},
+      vBook = #{vbook,jdbcType=VARCHAR},
+      vCapter = #{vcapter,jdbcType=VARCHAR},
+      vSection = #{vsection,jdbcType=VARCHAR},
+      vDescription = #{vdescription,jdbcType=VARCHAR},
+      difficulty = #{difficulty,jdbcType=INTEGER},
+      vname = #{vname,jdbcType=VARCHAR},
+      videoSrc = #{videosrc,jdbcType=VARCHAR}
+    where vid = #{vid,jdbcType=INTEGER}
+  </update>
+  <select id="videoCount"  parameterType="java.lang.String" resultType="INTEGER">
+    select count(*) from videoclass where 1=1
+    <if test="vgrade!=null and vgrade!=''">
+      and vgrade like "%"#{vgrade,jdbcType=VARCHAR}"%"
+    </if>
+    <if test="vbook!=null and vbook!=''">
+      and vbook=#{vbook,jdbcType=VARCHAR}
+    </if>
+    <if test="vname!=null and vname!=''">
+      and vname like "%"#{vname,jdbcType=VARCHAR}"%"
+    </if>
+  </select>
+  <select id="videoList"  parameterType="java.lang.String" resultType="com.demo.model.VideoClass">
+    select <include refid="Base_Column_List" />
+    from videoclass where 1=1
+    <if test="vgrade!=null and vgrade!=''">
+      and vgrade=#{vgrade,jdbcType=VARCHAR}
+    </if>
+    <if test="vbook!=null and vbook!=''">
+      and vbook=#{vbook,jdbcType=VARCHAR}
+    </if>
+    <if test="vname!=null and vname!=''">
+      and vname like "%"#{vname,jdbcType=VARCHAR}"%"
+    </if>
+    limit #{offset},#{pageNumber}
+  </select>
+  <select id="selectByGrade" parameterType="com.demo.model.VideoClass" resultType="com.demo.model.VideoClass">
+    select <include refid="Base_Column_List" />
+    from videoclass where vgrade like "%" #{vgrade,jdbcType=VARCHAR}"%"
+  </select>
+</mapper>

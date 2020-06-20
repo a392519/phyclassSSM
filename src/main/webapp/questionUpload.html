@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+	<!--<![endif]-->
+	<head>
+		<meta charset="utf-8" />
+		<title>Color Admin | Multiple File Upload</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+
+		<!-- ================== BEGIN BASE CSS STYLE ================== -->
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+		<link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+		<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+		<link href="assets/css/animate.min.css" rel="stylesheet" />
+		<link href="assets/css/style.min.css" rel="stylesheet" />
+		<link href="assets/css/style-responsive.min.css" rel="stylesheet" />
+		<link href="assets/css/theme/default.css" rel="stylesheet" id="theme" />
+		<!-- ================== END BASE CSS STYLE ================== -->
+
+		<!-- ================== BEGIN PAGE LEVEL CSS STYLE ================== -->
+		<link href="assets/plugins/jquery-file-upload/blueimp-gallery/blueimp-gallery.min.css" rel="stylesheet" />
+		<link href="assets/plugins/jquery-file-upload/css/jquery.fileupload.css" rel="stylesheet" />
+		<link href="assets/plugins/jquery-file-upload/css/jquery.fileupload-ui.css" rel="stylesheet" />
+		<!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+
+		<!-- ================== BEGIN BASE JS ================== -->
+		<script src="assets/plugins/pace/pace.min.js"></script>
+		<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<!-- ================== END BASE JS ================== -->
+	</head>
+	<body>
+
+		<!-- begin #content -->
+		<div id="content" class="content">
+			<!-- begin breadcrumb -->
+			<ol class="breadcrumb pull-right">
+				<li><a href="javascript:;">主页</a></li>
+				<li><a href="javascript:;">上传文件</a></li>
+				<li class="active">上传视频</li>
+			</ol>
+			<!-- end breadcrumb -->
+			<!-- begin page-header -->
+			<h1 class="page-header">视频信息 <small>视频的章节</small></h1>
+			<!-- end page-header -->
+
+			<!-- begin row -->
+			<div class="row">
+				<!-- begin col-6 -->
+				<div class="col-md-6">
+					<!-- begin panel -->
+					<div class="panel panel-inverse" data-sortable-id="form-stuff-1">
+						<div class="panel-heading">
+							<div class="panel-heading-btn">
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-default" data-click="panel-expand"><i class="fa fa-expand"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-success" data-click="panel-reload"><i class="fa fa-repeat"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-warning" data-click="panel-collapse"><i class="fa fa-minus"></i></a>
+								<a href="javascript:;" class="btn btn-xs btn-icon btn-circle btn-danger" data-click="panel-remove"><i class="fa fa-times"></i></a>
+							</div>
+							<h4 class="panel-title">题目上传</h4>
+						</div>
+						<div class="panel-body">
+							<form id="fileForm" action="importShortTel" method="post" enctype="multipart/form-data" target="message">
+
+							<input type="file" name="fileUser" accept="xls/xlsx"><br>
+								<button type="submit" class="btn btn-primary" data-dismiss="modal"
+
+								id="submitFile">导入短号</button>
+
+							</form>
+						</div>
+					</div>
+					<!-- end panel -->
+				</div>
+				<!-- begin scroll to top btn -->
+				<a href="javascript:;" class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade" data-click="scroll-top"><i
+					 class="fa fa-angle-up"></i></a>
+				<!-- end scroll to top btn -->
+			</div>
+		</div>
+
+
+			<!-- ================== BEGIN BASE JS ================== -->
+			<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
+		<!--<script src="assets/jquery-3.2.1.min.js"></script>-->
+			<script src="assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
+			<script src="assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
+			<script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+			<!--[if lt IE 9]>
+		<script src="assets/crossbrowserjs/html5shiv.js"></script>
+		<script src="assets/crossbrowserjs/respond.min.js"></script>
+		<script src="assets/crossbrowserjs/excanvas.min.js"></script>
+	<![endif]-->
+			<script src="assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+			<script src="assets/plugins/jquery-cookie/jquery.cookie.js"></script>
+			<!-- ================== END BASE JS ================== -->
+
+			<!-- ================== BEGIN PAGE LEVEL JS ================== -->
+			<script src="assets/plugins/jquery-file-upload/js/vendor/jquery.ui.widget.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/vendor/tmpl.min.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/vendor/load-image.min.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/vendor/canvas-to-blob.min.js"></script>
+			<script src="assets/plugins/jquery-file-upload/blueimp-gallery/jquery.blueimp-gallery.min.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.iframe-transport.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-process.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-image.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-audio.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-video.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
+			<script src="assets/plugins/jquery-file-upload/js/jquery.fileupload-ui.js"></script>
+
+			<!--[if (gte IE 8)&(lt IE 10)]>-->
+        <script src="assets/plugins/jquery-file-upload/js/cors/jquery.xdr-transport.js"></script>
+
+			<!--<script src="assets/js/form-multiple-upload.demo.min.js"></script>-->
+			<script src="assets/js/apps.min.js"></script>
+		<script src="assets/json2.js"></script>
+			<!-- ================== END PAGE LEVEL JS ================== -->
+
+		<script>
+
+			$(function() {
+
+				$("#submitFile").click(function() {
+
+					$("#fileForm").submit();
+
+					$('#message').unbind('load').on('load', function() {
+
+						var result = $("#message").contents().find('body').text();
+
+						alert(result);
+
+					});
+
+				});
+
+			});
+
+			$(function () {
+				//全局变量，判断是新增还是修改
+				var $vid=-1;
+				var $videosrc=null;
+				//接收修改的数据
+				var url=window.location.search; //获取url中"?"符后的字串
+				var id=-1;
+				if(url.indexOf("?")!=-1){
+				    id = url.substr(url.indexOf("=")+1);
+						console.log(id);
+					}
+				if(id!=-1){
+					$.ajax({
+						url: '/selById',
+						type: 'get',
+						cache: false,
+						data: {"vid": id},
+						dataType: 'json',
+						success: function (res) {
+
+							console.log(res);
+							var jsonObj=eval(res);
+							//如果是修改vid的值应该是大于0
+							$vid=jsonObj.vid;
+							$videosrc=jsonObj.videosrc;
+							$("#vname").val(res.vname);
+							$("#vbook option").each(function(){
+
+								if($(this).val() == jsonObj.vbook){
+
+									$(this).attr("selected", true);
+								}
+							});
+							$("#vcapter option").each(function(){
+
+								if($(this).val() == jsonObj.vcapter){
+
+									$(this).attr("selected", true);
+								}
+							});
+							$("#vsection option").each(function(){
+
+								if($(this).val() == jsonObj.vsection){
+
+									$(this).attr("selected", true);
+								}
+							});
+							$('#vdescription').val(jsonObj.vdescription);
+
+							$("#difficulty option").each(function(){
+
+								if($(this).val() == jsonObj.difficulty){
+
+									$(this).attr("selected", true);
+								}
+							});
+
+							var x=jsonObj.vgrade.split(",");
+							$("input[name=vgrade]").each(function(){
+								for(var i=0;i<x.length;i++){
+									if($(this).val() == x[i]){
+										$(this).attr("checked", true);
+									}
+								}
+
+							});
+						}
+					})
+				}
+				$("#btn").click(function () {
+
+
+					//新增
+					var formData = new FormData();
+                    var checkID=[];
+                    $("input[name='vgrade']:checked").each(function(i){
+                        checkID[i] = $(this).val();
+                    });
+					formData.append('vid',$vid);//如果值大于0则为修改
+                    formData.append('vname', $('#vname').val());
+					formData.append('vgrade', checkID);
+					formData.append('vbook', $('#vbook').val());
+					formData.append('vcapter', $('#vcapter').val());
+					formData.append('vsection', $('#vsection').val());
+					formData.append('vdescription', $('#vdescription').val());
+					formData.append('difficulty', $('#difficulty').val());
+					formData.append('videosrc',$videosrc);
+					formData.append('file',$('#file')[0].files[0]);
+					console.log($videosrc);
+					console.log($('#file')[0].files[0]);
+					console.log($('#vname').val());
+					console.log($('#vdescription').val());
+					if( ($('#file')[0].files[0]==undefined || $('#vname').val()==''||$('#vdescription').val().length>250)){
+					    alert("请选择上传文件并输入视频名称或视频描述超过250字,或需要重新上传文件")
+
+                    }else{
+						var suff=null;
+						if($('#file')[0].files[0]!=undefined){
+							var n=$('#file')[0].files[0].name;
+							var suff=n.substr(n.length-4);
+						}
+						var suff2=null;
+						if($videosrc!=null) suff2 =$videosrc.substr($videosrc.length-4);
+						if(suff=='.mp4' || suff2=='.mp4'){
+							$.ajax({
+								url: '/upload',
+								type: 'POST',
+								cache: false,
+								data: formData,
+								dataType:'text',
+								processData: false,
+								contentType: false,
+								traditional:true,
+								success:function(res){
+									alert(res);
+									if(res=='修改 success') {
+										history.back();
+									}
+								}
+							})
+						}else{
+							alert("上传格式必须为.mp4");
+						}
+
+                    }
+
+				})
+			})
+
+
+		</script>
+	</body>
+</html>
