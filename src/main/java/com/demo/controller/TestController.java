@@ -80,7 +80,6 @@ public class TestController {
     public String importTel(@RequestParam(value = "fileUser", required = false) MultipartFile file,
 
                             HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("/.......................................");
 
         if (file == null) {
 
