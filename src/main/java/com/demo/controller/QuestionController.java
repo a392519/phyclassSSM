@@ -4,68 +4,67 @@ import com.demo.service.imp.TestService;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
 
-@RestController
-@RequestMapping("/ss")
-public class TestController {
+@Controller
+public class QuestionController {
     @Autowired
     private TestService testService;
 
-        @RequestMapping(value = "/fileDown", method = RequestMethod.GET)
+    @RequestMapping(value = "/fileDown", method = RequestMethod.GET)
 
-        public void down(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public void down(HttpServletRequest request, HttpServletResponse response) throws Exception {
 
-            //模拟文件，myfile.txt为需要下载的文件
+        //模拟文件，myfile.txt为需要下载的文件
 
-            String fileName = request.getServletContext().getRealPath("/upload")+"/test2.xls";
+        String fileName = request.getServletContext().getRealPath("/upload")+"/test2.xls";
 
-            System.out.println(fileName);
+        System.out.println(fileName);
 
-            //获取输入流
+        //获取输入流
 
-            InputStream bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
+        InputStream bis = new BufferedInputStream(new FileInputStream(new File(fileName)));
 
-            //假如以中文名下载的话
+        //假如以中文名下载的话
 
-            String filename = "习题导入模板.xls";
+        String filename = "习题导入模板.xls";
 
-            //转码，免得文件名中文乱码
+        //转码，免得文件名中文乱码
 
-            filename = URLEncoder.encode(filename,"UTF-8");
+        filename = URLEncoder.encode(filename,"UTF-8");
 
-            //设置文件下载头
+        //设置文件下载头
 
-            response.addHeader("Content-Disposition", "attachment;filename=" + filename);
+        response.addHeader("Content-Disposition", "attachment;filename=" + filename);
 
-            //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
+        //1.设置文件ContentType类型，这样设置，会自动判断下载文件类型
 
-            response.setContentType("multipart/form-data");
+        response.setContentType("multipart/form-data");
 
-            BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
+        BufferedOutputStream out = new BufferedOutputStream(response.getOutputStream());
 
-            int len = 0;
+        int len = 0;
 
-            while((len = bis.read()) != -1){
+        while((len = bis.read()) != -1){
 
-                out.write(len);
+            out.write(len);
 
-                out.flush();
-
-            }
-
-            out.close();
+            out.flush();
 
         }
+
+        out.close();
+
+    }
 
 
 

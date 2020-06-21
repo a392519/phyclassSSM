@@ -71,16 +71,18 @@
                     <h4 class="panel-title">题目上传</h4>
                 </div>
                 <div class="panel-body">
+                    <div>excel上传题目</div>
                     <form action="/fileDown" method="get">
 
                         <input type="submit" value="下载模板">
 
                     </form>
                     <div class="modal-body">
+                        <div>上传题目：暂时只支持.xls版本</div>
 
                         <form id="fileForm" action="/importShortTel" method="post" enctype="multipart/form-data" target="message">
 
-                            <input type="file" name="fileUser" accept="xls/xlsx" alt="暂时只支持.xls版本"><br>
+                            <input type="file" name="fileUser" accept="xls/xlsx" ><br>
 
                         </form>
 
@@ -92,7 +94,7 @@
 
                         <button type="submit" class="btn btn-primary" data-dismiss="modal"
 
-                                id="submitFile">导入短号</button>
+                                id="submitFile">上传题目</button>
 
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
