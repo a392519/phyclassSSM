@@ -16,7 +16,7 @@ import java.io.*;
 import java.net.URLEncoder;
 
 @RestController
-@RequestMapping("/ss")
+
 public class TestController {
     @Autowired
     private TestService testService;

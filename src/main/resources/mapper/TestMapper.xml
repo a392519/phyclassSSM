@@ -4,13 +4,13 @@
 
     <insert id="insertShortTelBatch" parameterType="java.util.List">
 
-        insert into short_tel(short_tel)
+        insert into short_tel(short_tel,pic)
 
         values
 
         <foreach collection="list" item="item"  separator=",">
 
-            (#{item.shortTel})
+            (#{item.shortTel},#{item.pic})
 
         </foreach>
 

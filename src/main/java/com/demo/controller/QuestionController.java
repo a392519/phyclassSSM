@@ -16,6 +16,7 @@ import java.io.*;
 import java.net.URLEncoder;
 
 @Controller
+@RequestMapping("/sa")
 public class QuestionController {
     @Autowired
     private TestService testService;

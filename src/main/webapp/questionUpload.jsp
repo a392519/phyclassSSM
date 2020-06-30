@@ -77,14 +77,15 @@
                         <input type="submit" value="下载模板">
 
                     </form>
+                    <form id="fileForm" action="/importShortTel" method="post" enctype="multipart/form-data" target="message">
                     <div class="modal-body">
                         <div>上传题目：暂时只支持.xls版本</div>
 
-                        <form id="fileForm" action="/importShortTel" method="post" enctype="multipart/form-data" target="message">
+
 
                             <input type="file" name="fileUser" accept="xls/xlsx" ><br>
 
-                        </form>
+
 
                         <iframe id='message' name='message' style="display:none;"></iframe>
 
@@ -99,7 +100,7 @@
                         <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
 
                     </div>
-
+                    </form>
                 </div>
             </div>
             <!-- end panel -->

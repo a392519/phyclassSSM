@@ -2,15 +2,15 @@ package com.demo.service.imp;
 
 import com.demo.mapper.TestMapper;
 import com.demo.model.ShortTel;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TestService {
@@ -66,10 +66,10 @@ public class TestService {
                 if (number.equals("")) {
 
                     continue;
-
                 }
 
             } else {
+
 
                 if (cell.getRichStringCellValue().getString().equals("")) {
 
@@ -90,8 +90,32 @@ public class TestService {
                 shortTel = cell.getRichStringCellValue().getString();
 
             }
+            //....................................................................
+//            StringBuilder sb=new StringBuilder();
+            List<HSSFPictureData> pictures = sheet.getWorkbook().getAllPictures();;
+            for (HSSFShape shape : sheet.getDrawingPatriarch().getChildren()) {
+                HSSFClientAnchor anchor = (HSSFClientAnchor) shape.getAnchor();
+                if (shape instanceof HSSFPicture) {
+                    HSSFPicture pic = (HSSFPicture) shape;
+//                    int row = anchor.getRow2();
+//                    int col = anchor.getCol2();
+                    System.out.println("--->" + anchor.getRow2() + ":"  + anchor.getCol2()+"//////////////");
+                    System.out.println(i+"]]]]]]]]]]]]]]]]]");
+                    if(i==anchor.getRow2() && anchor.getCol2()==0){
+                        System.out.println("--->" + anchor.getRow2() + ":"  + anchor.getCol2());
+                        //map.put(row+":"+col, row+":"+col);
+                        int pictureIndex = pic.getPictureIndex()-1;
+                        System.out.println(pictureIndex+".....");
+                        HSSFPictureData picData = pictures.get(pictureIndex);
+                        System.out.println("--->" + picData);
+                        tel.setPic(picData.getData());
+                        break;
+                    }
 
-
+                }
+            }
+//
+            //......................................................
 
             tel.setShortTel(shortTel);
 
