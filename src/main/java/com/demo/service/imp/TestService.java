@@ -86,9 +86,7 @@ public class TestService {
                 shortTel = df.format(cell.getNumericCellValue());
 
             } else {
-
                 shortTel = cell.getRichStringCellValue().getString();
-
             }
             //....................................................................
 //            StringBuilder sb=new StringBuilder();

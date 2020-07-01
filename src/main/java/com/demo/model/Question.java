@@ -1,33 +1,61 @@
 package com.demo.model;
 
+import java.util.List;
+
 public class Question {
-    private Integer id;
+    private String id;
 
     private String type;
 
     private Integer number;
 
-    private String title;
+    private byte[] title;
 
-    private String imagelist;
+    private byte[] imagelist;
 
-    private String questionoption;
+    private byte[] questionoption;
 
-    private String answer;
+    private byte[] answer;
 
-    private String resolves;
+    private byte[] resolves;
 
-    private String answerimagelist;
+    private  byte[] answerimagelist;
 
     private Integer vid;
 
     private Integer difficulty;
+    private String vname;
 
-    public Integer getId() {
+    public String getVname() {
+        return vname;
+    }
+
+    public void setVname(String vname) {
+        this.vname = vname;
+    }
+
+    public byte[] getTitle() {
+        return title;
+    }
+
+    public void setTitle(byte[] title) {
+        this.title = title;
+    }
+
+    public byte[] getResolves() {
+        return resolves;
+    }
+
+    public void setResolves(byte[] resolves) {
+        this.resolves = resolves;
+    }
+
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -47,52 +75,37 @@ public class Question {
         this.number = number;
     }
 
-    public String getTitle() {
-        return title;
-    }
 
-    public void setTitle(String title) {
-        this.title = title == null ? null : title.trim();
-    }
-
-    public String getImagelist() {
-        return imagelist;
-    }
-
-    public void setImagelist(String imagelist) {
-        this.imagelist = imagelist == null ? null : imagelist.trim();
-    }
-
-    public String getQuestionoption() {
-        return questionoption;
-    }
-
-    public void setQuestionoption(String questionoption) {
-        this.questionoption = questionoption == null ? null : questionoption.trim();
-    }
-
-    public String getAnswer() {
+    public byte[] getAnswer() {
         return answer;
     }
 
-    public void setAnswer(String answer) {
-        this.answer = answer == null ? null : answer.trim();
+    public void setAnswer(byte[] answer) {
+        this.answer = answer;
     }
 
-    public String getResolves() {
-        return resolves;
+    public byte[] getImagelist() {
+        return imagelist;
     }
 
-    public void setResolves(String resolves) {
-        this.resolves = resolves == null ? null : resolves.trim();
+    public void setImagelist(byte[] imagelist) {
+        this.imagelist = imagelist;
     }
 
-    public String getAnswerimagelist() {
+    public byte[] getQuestionoption() {
+        return questionoption;
+    }
+
+    public void setQuestionoption(byte[] questionoption) {
+        this.questionoption = questionoption;
+    }
+
+    public byte[] getAnswerimagelist() {
         return answerimagelist;
     }
 
-    public void setAnswerimagelist(String answerimagelist) {
-        this.answerimagelist = answerimagelist == null ? null : answerimagelist.trim();
+    public void setAnswerimagelist(byte[] answerimagelist) {
+        this.answerimagelist = answerimagelist;
     }
 
     public Integer getVid() {

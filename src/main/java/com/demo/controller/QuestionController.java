@@ -1,5 +1,6 @@
 package com.demo.controller;
 
+import com.demo.service.QuestionService;
 import com.demo.service.imp.TestService;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -16,10 +17,9 @@ import java.io.*;
 import java.net.URLEncoder;
 
 @Controller
-@RequestMapping("/sa")
 public class QuestionController {
     @Autowired
-    private TestService testService;
+    private QuestionService questionService;
 
     @RequestMapping(value = "/fileDown", method = RequestMethod.GET)
 
@@ -27,7 +27,7 @@ public class QuestionController {
 
         //模拟文件，myfile.txt为需要下载的文件
 
-        String fileName = request.getServletContext().getRealPath("/upload")+"/test2.xls";
+        String fileName = request.getServletContext().getRealPath("/upload")+"/model.xls";
 
         System.out.println(fileName);
 
@@ -74,9 +74,9 @@ public class QuestionController {
 
 
 
-    @RequestMapping(value = "/importShortTel")
+    @RequestMapping(value = "/importQuestion")
 
-    public String importTel(@RequestParam(value = "fileUser", required = false) MultipartFile file,
+    public String importQuestion(@RequestParam(value = "fileUser", required = false) MultipartFile file,
 
                             HttpServletRequest request, HttpServletResponse response) {
 
@@ -136,7 +136,7 @@ public class QuestionController {
 
                 // 调用Service，将数据插入Excel
 
-                int i = testService.importShortTel(sheet);
+                int i = questionService.importQuestion(sheet);
 
                 if (i > 0) {
 

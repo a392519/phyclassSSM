@@ -77,7 +77,7 @@
                         <input type="submit" value="下载模板">
 
                     </form>
-                    <form id="fileForm" action="/importShortTel" method="post" enctype="multipart/form-data" target="message">
+                    <form id="fileForm" action="/importQuestion" method="post" enctype="multipart/form-data" target="message">
                     <div class="modal-body">
                         <div>上传题目：暂时只支持.xls版本</div>
 
